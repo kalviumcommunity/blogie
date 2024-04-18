@@ -1,10 +1,17 @@
-
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import Home from './Components/Home.jsx'
+import Register from "./Components/Register.jsx"
+import Form from './Components/Form.jsx'
 const App = () => {
 
   return (
-    <div>
-      <h1>This is my capstone project</h1>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/form" element={<Form />} />
+    </Routes>
+    </BrowserRouter>
   )
 }
 
