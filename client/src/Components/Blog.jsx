@@ -31,9 +31,9 @@ const Blog = () => {
   return (
     <div className="main">
       <div>
-        {/* <nav>
+        <nav>
           <div className="div1">
-            <img src={logo} alt="Logo" className="logo" />
+            <img src={logo} alt="Logo" className="logo-blog" />
             <div className="div22">
               <Link to="/" className="link">
                 <h3>Home</h3>
@@ -43,7 +43,7 @@ const Blog = () => {
               </Link>
             </div>
           </div>
-        </nav> */}
+        </nav>
       </div>
       <center>
         <div className="input-content">

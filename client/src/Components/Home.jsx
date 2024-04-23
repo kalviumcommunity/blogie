@@ -47,10 +47,10 @@ const Home = () => {
         <div className="div1">
           <div className='mainlogodiv'>
             <div>
-            <img src={logo} alt="Logo" className="logo" />
+            <img src={logo} alt="Logo" className="logo-home" />
             </div>
             <div className='dates'>
-            <h3 className='date'>Date: {currentDate}</h3><br />
+            <h3 className='date'>Date: {currentDate}</h3>
             <h3 className='time'>Time: {currentTime}</h3>
             </div>
           </div>

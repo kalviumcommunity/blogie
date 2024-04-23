@@ -4,7 +4,7 @@ import '../App.css'
 const About = () => {
   return (
     <div>
-      {/* <nav>
+      <nav>
         <div className="div1">
           <img src={logo} alt="Logo" className="logo" />
           <div className="div23">
@@ -17,7 +17,7 @@ const About = () => {
             </h3></Link>
           </div>
         </div>
-      </nav> */}
+      </nav>
       <div className='about'>
         <strong>About blogie</strong><br /><br />
         <p>Welcome to blogie, a platform where creativity meets interest.</p><br />
