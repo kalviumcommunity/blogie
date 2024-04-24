@@ -17,6 +17,7 @@ router.post("/data", async (req, res) => {
     await newBlog.save();
     return res.json({ status: true, message: "Blog is stored in the database" }); // Corrected the message
 });
+
 router.post("/forgotpassword", async (req, res) => {
     const { email } = req.body;
     try {
@@ -53,5 +54,5 @@ router.post("/forgotpassword", async (req, res) => {
         .status(500)
         .json({ message: "Error sending password reset email" });
     }
-  });
+});
 module.exports = router;

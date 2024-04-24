@@ -4,6 +4,7 @@ import Register from "./Components/Register.jsx"
 import Form from './Components/Form.jsx'
 import Blog from './Components/Blog.jsx'
 import About from "./Components/About.jsx"
+import Forgotpass from "./Components/Forgotpass.jsx"
 import './App.css'
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
       <Route path="/form" element={<Form />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/about" element={<About />} />
+      <Route path="/forgotpass" element={<Forgotpass />} />
     </Routes>
     </BrowserRouter>
   )
