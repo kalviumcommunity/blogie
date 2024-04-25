@@ -55,4 +55,20 @@ router.post("/forgotpassword", async (req, res) => {
         .json({ message: "Error sending password reset email" });
     }
 });
+
+router.post("/resetpassword/:token", async (req, res) => {
+  const token = req.params.token;
+  const { password } = req.body; // Corrected typo here
+  try {
+    const decoded = await jwt.verify(token, process.env.KEY);
+    const id = decoded.id;
+    const hashPassword = await bcrypt.hash(password, 10);
+    await User.findByIdAndUpdate({ _id: id }, { password: hashPassword }); // Corrected typo here
+    return res.json({ status: true, message: "Your password is updated" });
+  } catch (err) {
+    console.error("Error occurred while resetting password:", err);
+    return res.status(500).json({ message: "Error resetting password" });
+  }
+});
+
 module.exports = router;
