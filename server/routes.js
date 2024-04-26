@@ -17,7 +17,6 @@ router.post("/data", async (req, res) => {
     await newBlog.save();
     return res.json({ status: true, message: "Blog is stored in the database" }); // Corrected the message
 });
-
 router.post("/forgotpassword", async (req, res) => {
     const { email } = req.body;
     try {
@@ -55,7 +54,25 @@ router.post("/forgotpassword", async (req, res) => {
         .json({ message: "Error sending password reset email" });
     }
 });
-
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User is not registered" });
+    }
+    const validPassword = await bcrypt.compare(password, user.password);
+    if (!validPassword) {
+      return res.status(400).json({ message: "Password is incorrect" });
+    }
+    const token = jwt.sign({ username: user.username },"mama");
+    res.cookie("token", token, { httpOnly: true, maxAge: 360000 });
+    return res.json({ status: true, message: "Login successful" });
+  } catch (error) {
+    console.error("Error logging in:", error);
+    return res.status(500).json({ message: "Error logging in" });
+  }
+});
 router.post("/resetpassword/:token", async (req, res) => {
   const token = req.params.token;
   const { password } = req.body; // Corrected typo here
