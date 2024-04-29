@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import { Routes, Route} from "react-router-dom"
 import Home from './Components/Home.jsx'
 import Register from "./Components/Register.jsx"
 import Form from './Components/Form.jsx'
@@ -13,7 +13,7 @@ import './App.css'
 const App = () => {
 
   return (
-    <BrowserRouter>
+    <App>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
@@ -25,7 +25,7 @@ const App = () => {
       <Route path="/resetpass" element={<Resetpass />} />
       <Route path="/forgotpass" element={<Forgotpass />} />
     </Routes>
-    </BrowserRouter>
+    </App>
   )
 }
 
