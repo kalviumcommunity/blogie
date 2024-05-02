@@ -4,9 +4,11 @@ const cors = require("cors");
 const Data = require("./schema.js");
 const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser")
-const {UserRouter} = require("./routes/user.js")
+const {UserRouter} = require("./routes/routes.js")
 const app = express();
 dotenv.config()
+
+
 app.use(cors({
   origin : "http://localhost:5173",
   credentials : true
