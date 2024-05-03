@@ -111,9 +111,8 @@ textarea:hover {
   -webkit-transform: translateX(-3px);
   transform: translateX(-3px);
   transition: 0.5s ease;
-}
-.text {
-  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
 }
 .contacts {
   margin-top: 2%;
@@ -127,7 +126,10 @@ textarea:hover {
 }
 .logo2 {
   width: 30%;
-} 
+}
+.dates {
+  padding-top: 1%;
+}
 .oops {
   padding-top: 3%;
 }
@@ -435,11 +437,7 @@ button {
   width: 300px;
 }
 .text {
-  display: flex;
-  flex-direction: column;
-  width: 50px;
-  position: absolute;
-  margin: 0px 0px 100px 120px;
+  margin-top: 2%;
 }
 .zzz {
   color: black;

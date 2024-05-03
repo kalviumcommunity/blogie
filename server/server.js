@@ -40,7 +40,7 @@ app.get("/getdata", async (req, res) => {
 
 app.listen(process.env.PORT || 3001, async () => {
   await mongoose.connect(
-    "mongodb://127.0.0.1:27017/blogie"
+    "mongodb+srv://vinnugollakoti:123@cluster0.cwivpr4.mongodb.net/blogie?retryWrites=true&w=majority&appName=Cluster0"
   );
   console.log("server is running");
 });

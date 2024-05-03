@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import logo2 from '../assets/logo2.png'
+import "./sample.css"
 
 const Home = () => {
   const [blogs, setBlogs] = useState([])
@@ -50,8 +51,8 @@ const Home = () => {
             <img src={logo} alt="Logo" className="logo-home" />
             </div>
             <div className='dates'>
-            <h3 className='date'>Date: {currentDate}</h3>
-            <h3 className='time'>Time: {currentTime}</h3>
+              <p className='date'>Date: {currentDate}</p>
+              <p className='time'>Time: {currentTime}</p>
             </div>
           </div>
           <div className="div2">
@@ -89,11 +90,15 @@ const Home = () => {
         ) : (
           blogs.map((blog) => (
             <div className="blog" key={blog._id}>
-              <center>
-                <h2>{blog.heading}</h2>
-              </center>
+              <div className='.blog-heading'>
+                <center>
+                  <h2>{blog.heading}</h2>
+                </center>
+              </div>
               <div className="text">
-                <p>{blog.blog}</p>
+                <center>
+                  <p>{blog.blog}</p>
+                </center>
               </div>
               <div className="contacts">
                 <p>
