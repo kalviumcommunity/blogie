@@ -89,7 +89,7 @@ router.post("/forgotpassword", async (req, res) => {
 
 router.post("/resetpassword/:token", async (req, res) => {
   const token = req.params.token;
-  const { password } = req.body;
+  const { password } = req.body;w
   try {
     const decoded = await jwt.verify(token, process.env.KEY);
     const id = decoded.id;
