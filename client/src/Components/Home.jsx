@@ -113,6 +113,9 @@ const Home = () => {
           ))
         )}
       </center>
+      <center>
+        <p>Made with ❤️ by Vinnu</p>
+      </center>
     </div>
   );
 };

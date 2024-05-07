@@ -11,32 +11,37 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
-    axios.post("http://localhost:3001/auth/login", {
-      email,
-      password,
-    })
-    .then(response => {
+    setLoading(true);
+    
+    try {
+      const response = await axios.post("http://localhost:3001/auth/login", {
+        email,
+        password,
+      });
+  
       console.log(response);
-      if (response.data.status) {
+  
+      if (response.data && response.data.status) {
         setTimeout(() => {
-          navigate('/home');
-        }, 2000)
+          navigate('/');
+        }, 2000);
       } else {
-        alert(response.data.message || "Login failed");
+        const errorMessage = response.data && response.data.message ? response.data.message : "Login failed";
+        alert(errorMessage);
       }
-    })
-    .catch(err => {
-      console.log(err);
+    } catch (error) {
+      console.error("An error occurred during login:", error);
       alert("An error occurred. Please try again later.");
-    }).finally(() => {
+    } finally {
       setTimeout(() => {
-        setLoading(false)
+        setLoading(false);
       }, 1000);
-    })
+    }
   };
+  
+  
 
   return (
     <div>
@@ -86,5 +91,4 @@ const Login = () => {
     </div>
   );
 }
-
 export default Login;
