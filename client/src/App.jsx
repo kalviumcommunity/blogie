@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route} from "react-router-dom"
 import Home from './Components/Home.jsx'
 import Register from "./Components/Register.jsx"
-import Form from './Components/Form.jsx'
 import Blog from './Components/Blog.jsx'
 import Login from "./Components/Login.jsx"
 import Login1 from "./Components/Login1.jsx"
@@ -11,13 +10,12 @@ import Resetpass from './Components/Resetpass.jsx'
 import './App.css'
 
 const App = () => {
-
+  
   return (
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/form" element={<Form />} />
       <Route path="/login" element={<Login/>} />
       <Route path="/login1" element={<Login1/>} />
       <Route path="/blog" element={<Blog />} />

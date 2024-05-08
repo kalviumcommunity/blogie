@@ -95,6 +95,11 @@ const Home = () => {
                   <h2>{blog.heading}</h2>
                 </center>
               </div>
+              <div className='blog-image'>
+                <center>
+                  <img src={blog.image} alt="" className="blog-image" />
+                </center>
+              </div>
               <div className="text">
                 <center>
                   <p>{blog.blog}</p>
