@@ -6,6 +6,7 @@ const Blog = () => {
   const [author, setAuthor] = useState("");
   const [email, setEmail] = useState("");
   const [heading, setHeading] = useState("");
+  const [image, setImage] = useState("");
   const [blog, setBlog] = useState("");
   const navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -16,6 +17,7 @@ const Blog = () => {
         email,
         heading,
         blog,
+        image
       })
       .then((response) => {
         console.log(response.data);
@@ -73,6 +75,16 @@ const Blog = () => {
                 onChange={(e) => setHeading(e.target.value)}
               />
             </div>
+
+            <div className="input">
+              <label htmlFor="text">Image link : </label>
+              <input
+                type="text"
+                placeholder="Enter your image link here"
+                onChange={(e) => setImage(e.target.value)}
+              />
+            </div>
+
             <div className="input">
               <p>Write your Blog : </p>
               <br />

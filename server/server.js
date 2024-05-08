@@ -18,12 +18,13 @@ app.use(express.json());
 app.use("/auth", UserRouter)
 
 app.post("/data", async (req, res) => {
-  const { author, email, heading, blog } = req.body;
+  const { author, email, heading, blog, image } = req.body;
   const newBlog = new Data({
     author,
     email,
     heading,
     blog,
+    image
   });
   await newBlog.save();
   return res.json({ status: true, message: "Blog is stored in DB" });
