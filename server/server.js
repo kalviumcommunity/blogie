@@ -24,7 +24,8 @@ app.post("/data", async (req, res) => {
     email,
     heading,
     blog,
-    image
+    image,
+    image2
   });
   await newBlog.save();
   return res.json({ status: true, message: "Blog is stored in DB" });
