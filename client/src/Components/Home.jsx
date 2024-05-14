@@ -55,10 +55,19 @@ const Home = () => {
   useEffect(() => {
     if (getCookie("authToken")) {
       console.log("enjoy chey mowa")
+      setLoginBtn(true)
     } else {
       navigate("/login")
     }
   }, [navigate])
+
+
+  const handleLogout = () => {
+    document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setLoginBtn(false);
+    navigate("/login");
+  };
+
   return (
     <div className='main'>
       <nav>
@@ -85,9 +94,15 @@ const Home = () => {
             <Link to="/authors" className='link'>
               <h3>Authors</h3>
             </Link>
-            <Link to="login" className='link'>
-              <h3>Login</h3>
+            {loginbtn ? (
+              <Link to="/login" className='link' onClick={handleLogout}>
+              <h3>Logout</h3>
             </Link>
+            ) : (
+              <Link to="/login" className='link'>
+                <h3>Login</h3>
+              </Link>
+            )}
           </div>
         </div>
       </nav>
