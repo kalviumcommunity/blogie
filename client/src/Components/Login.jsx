@@ -20,15 +20,8 @@ const Login = () => {
         email,
         password,
       });
-  
       console.log(response);
-  
-      if (response.data && response.data.status) {
-          navigate('/');
-      } else {
-        const errorMessage = response.data && response.data.message ? response.data.message : "Login failed";
-        alert(errorMessage);
-      }
+      navigate("/")
     } catch (error) {
       console.error("An error occurred during login:", error);
       alert("An error occurred. Please try again later.");

@@ -28,7 +28,8 @@ router.post("/signup", async (req, res) => {
     return res.status(500).json({ message: "Error registering user" });
   }
 });
-let authToken = ''
+
+
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -41,7 +42,6 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Password is incorrect" });
     }
     const token = jwt.sign({ username: user.username }, "JWTCODE", { expiresIn: "1h" });
-    authToken = token;
     res.cookie('authToken', token, { maxAge: 3600000, httpOnly: true });
     res.send("Login successfull")
 
@@ -52,14 +52,14 @@ router.post("/login", async (req, res) => {
 });
 
 // checking if user is logged in
-router.get('/check-auth', (req, res) => {
-  const authToken = req.cookies.authToken;
-  if (authToken) {
-      res.send({ authenticated: true });
-  } else {
-      res.send({ authenticated: false });
-  }
-});
+// router.get('/check-auth', (req, res) => {
+//   const authToken = req.cookies.authToken;
+//   if (authToken) {
+//       res.send({ authenticated: true });
+//   } else {
+//       res.send({ authenticated: false });
+//   }
+// });
 
 router.post("/forgotpassword", async (req, res) => {
   const { email } = req.body;

@@ -45,19 +45,19 @@ const Home = () => {
   }, [])
 
 
-  useEffect(() => {
-        const checkAuth = async () => {
-            try {
-                const response = await axios.get('/check-auth');
-                if (!response.data.authenticated) {
-                    navigate('/login');
-                }
-            } catch (error) {
-                console.error('Error checking authentication:', error);
-            }
-        };
-        checkAuth();
-    }, [navigate]);
+  // useEffect(() => {
+  //       const checkAuth = async () => {
+  //           try {
+  //               const response = await axios.get('/check-auth');
+  //               if (!response.data.authenticated) {
+  //                   navigate('/login');
+  //               }
+  //           } catch (error) {
+  //               console.error('Error checking authentication:', error);
+  //           }
+  //       };
+  //       checkAuth();
+  //   }, []);
 
   return (
     <div className='main'>
@@ -81,6 +81,9 @@ const Home = () => {
             </Link>
             <Link to="/about" className="link">
               <h3>About</h3>
+            </Link>
+            <Link to="/authors" className='link'>
+              <h3>Authors</h3>
             </Link>
             <Link to="login" className='link'>
               <h3>Login</h3>
