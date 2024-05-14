@@ -8,10 +8,17 @@ import "./sample.css"
 const Home = () => {
   const [blogs, setBlogs] = useState([])
   const [currentDate, setCurrentDate] = useState("");
-  const [currentTime, setCurrentTime] = useState("")
+  const [currentTime, setCurrentTime] = useState("");
+  const [loginbtn, setLoginBtn] = useState(false);
 
   const navigate = useNavigate()
 
+  function getCookie(name) {
+    let cookieArray = document.cookie.split('; ')
+    let cookie = cookieArray.find((row) => row.startsWith(name + '='))
+    return cookie ? cookie.split('=')[1] :""
+  }
+  
   // Date function
   useEffect(() => {
     const getCurrentDate = () => {
@@ -45,20 +52,13 @@ const Home = () => {
   }, [])
 
 
-  // useEffect(() => {
-  //       const checkAuth = async () => {
-  //           try {
-  //               const response = await axios.get('/check-auth');
-  //               if (!response.data.authenticated) {
-  //                   navigate('/login');
-  //               }
-  //           } catch (error) {
-  //               console.error('Error checking authentication:', error);
-  //           }
-  //       };
-  //       checkAuth();
-  //   }, []);
-
+  useEffect(() => {
+    if (getCookie("authToken")) {
+      console.log("enjoy chey mowa")
+    } else {
+      navigate("/login")
+    }
+  }, [navigate])
   return (
     <div className='main'>
       <nav>
