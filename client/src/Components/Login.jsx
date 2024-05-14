@@ -24,9 +24,7 @@ const Login = () => {
       console.log(response);
   
       if (response.data && response.data.status) {
-        setTimeout(() => {
           navigate('/');
-        }, 2000);
       } else {
         const errorMessage = response.data && response.data.message ? response.data.message : "Login failed";
         alert(errorMessage);

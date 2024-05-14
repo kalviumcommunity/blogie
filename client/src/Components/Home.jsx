@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import logo2 from '../assets/logo2.png'
 import "./sample.css"
@@ -9,6 +9,8 @@ const Home = () => {
   const [blogs, setBlogs] = useState([])
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("")
+
+  const navigate = useNavigate()
 
   // Date function
   useEffect(() => {
@@ -42,6 +44,21 @@ const Home = () => {
     .catch((err) => console.log(err))
   }, [])
 
+
+  useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const response = await axios.get('/check-auth');
+                if (!response.data.authenticated) {
+                    navigate('/login');
+                }
+            } catch (error) {
+                console.error('Error checking authentication:', error);
+            }
+        };
+        checkAuth();
+    }, [navigate]);
+
   return (
     <div className='main'>
       <nav>
@@ -64,6 +81,9 @@ const Home = () => {
             </Link>
             <Link to="/about" className="link">
               <h3>About</h3>
+            </Link>
+            <Link to="login" className='link'>
+              <h3>Login</h3>
             </Link>
           </div>
         </div>
