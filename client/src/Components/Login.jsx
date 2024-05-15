@@ -73,7 +73,7 @@ const Login = () => {
             <p>Forgot password?</p></Link>
             <div>
               {!loading ? (<center>
-                <button type="submit">Login</button>
+                <button type="submit" className="login-btn">Login</button>
               </center>) : null}
             </div>
           </form>
