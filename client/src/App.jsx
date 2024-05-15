@@ -10,6 +10,7 @@ import Forgotpass from "./Components/Forgotpass.jsx"
 import Resetpass from './Components/Resetpass.jsx'
 import Account from "./Components/Account.jsx"
 import Modal from "./Components/Modal.jsx"
+import Settings from "./Components/Settings.jsx"
 import './App.css'
 import './Button.css'
 import "./Extra.css"
@@ -28,6 +29,7 @@ const App = () => {
       <Route path="/resetpass" element={<Resetpass />} />
       <Route path="/account" element={<Account />} />
       <Route path="/modal" element={<Modal />} />
+      <Route path="/settings" element={<Settings />} />
       <Route path="/forgotpass" element={<Forgotpass />} />
     </Routes>
     </BrowserRouter>

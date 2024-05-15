@@ -18,7 +18,7 @@ app.use(express.json());
 app.use("/auth", UserRouter)
 
 app.post("/data", async (req, res) => {
-  const { author, email, heading, blog, image } = req.body;
+  const { author, email, heading, blog, image, image2 } = req.body;
   const newBlog = new Data({
     author,
     email,
