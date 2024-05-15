@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import logo2 from '../assets/logo2.png'
+import AccountDetails from "./Modal"
 import "./sample.css"
 
 const Home = () => {
@@ -83,27 +84,30 @@ const Home = () => {
           </div>
           <div className="div2">
             <Link to="/" className="link">
-              <h3>Home</h3>
+              <h3 className='nav-btn'>Home</h3>
             </Link>
             <Link to="/blog" className="link">
-              <h3>Create a Blog</h3>
+              <h3 className='nav-btn'>Create a Blog</h3>
             </Link>
             <Link to="/about" className="link">
-              <h3>About</h3>
+              <h3 className='nav-btn'>About</h3>
             </Link>
             <Link to="/authors" className='link'>
-              <h3>Authors</h3>
+              <h3 className='nav-btn'>Authors</h3>
             </Link>
             {loginbtn ? (
               <Link to="/login" className='link' onClick={handleLogout}>
-              <h3>Logout</h3>
+              <h3 className='nav-btn'>Logout</h3>
             </Link>
             ) : (
               <Link to="/login" className='link'>
-                <h3>Login</h3>
+                <h3 className='nav-btn'>Login</h3>
               </Link>
             )}
+            {/* <img src={profile} alt="" className='profile1' /> */}
+            <AccountDetails/>
           </div>
+          
         </div>
       </nav>
       <div className="big-font">

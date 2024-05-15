@@ -12,6 +12,7 @@
 }
 html {
   height: 100%;
+  overflow-x: hidden;
 }
 body {
   background-color: rgba(232, 232, 184, 0.265);
@@ -31,7 +32,7 @@ nav {
   justify-content: space-between;
 }
 .div2 {
-  width: 35%;
+  width: 40%;
   padding: 1.7%;
   padding-right: 2.7%;
   padding-top: 2%;
@@ -53,6 +54,7 @@ nav {
 .link {
   color: black;
   text-decoration: none;
+  margin-top: 2%;
 }
 .input-content {
   width: max-content;
@@ -473,7 +475,7 @@ button {
 
 
 /* login btn */
-button {
+.login-btn {
   padding: 15px 25px;
   margin-top: 7%;
   border: unset;
@@ -490,7 +492,7 @@ button {
   overflow: hidden;
  }
  
- button::before {
+ .login-btn::before {
   content: "";
   position: absolute;
   top: 0;
@@ -505,11 +507,11 @@ button {
   transition: all 250ms
  }
  
- button:hover {
+ .login-btn:hover {
   color: #e8e8e8;
  }
  
- button:hover::before {
+ .login-btn:hover::before {
   width: 100%;
  }
 
@@ -529,6 +531,8 @@ button {
   cursor: pointer;
   padding-top: 3%;
 }
+
+
 
 .btn6:active {
   box-shadow: 0px 0px var(--main-color);

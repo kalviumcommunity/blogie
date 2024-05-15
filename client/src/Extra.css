@@ -1,0 +1,42 @@
+.modal {
+    background-color: white;
+    padding: 1%;
+    width: fit-content;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: -22%;
+    z-index: 1;
+    border: 1px solid black;
+}
+.profile {
+    border-radius: 100%;
+    border: 1px solid black;
+    width: 20%;
+}
+.profile-div {
+    width: 7%;
+}
+.profile1 {
+    border-radius: 100%;
+    border: 1px solid black;
+    width: 100%;
+}
+.badge-div {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+}
+.badge {
+    color: grey;
+}
+hr {
+    margin-top: 2%;
+}
+.nav-btn {
+    position: relative;
+}
+.btns-div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}
