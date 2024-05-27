@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import profile from "../assets/profile.webp"
 import { getCookie } from "./Account"
+import Deletebtn from "./Deletebtn"
 const Settings = () => {
   const [blogs, setBlogs] = useState([])
 
@@ -79,6 +80,15 @@ const Settings = () => {
             <p>
               Contact {blog.author} at {blog.email}
             </p>
+          </div>
+          <br />
+          <div className="spsbtns">
+            <div>
+          <Deletebtn /></div>
+          <div>
+          <button className="btn-update"> Update
+          </button>
+          </div>
           </div>
         </div>
       ))}
