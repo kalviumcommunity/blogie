@@ -30,7 +30,13 @@ app.post("/data", async (req, res) => {
   await newBlog.save();
   return res.json({ status: true, message: "Blog is stored in DB" });
 });
-
+app.post("/blog/:username",async (req,res)=>{
+  const username=req.params.username
+  // console.log(username)
+  const blogs=await Data.find({author:username})
+  // console.log(blogs)
+  res.send(blogs)
+})
 app.get("/getdata", async (req, res) => {
   Data.find()
     .then((data) => res.json(data))

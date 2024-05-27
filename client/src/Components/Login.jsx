@@ -24,7 +24,7 @@ const Login = () => {
       navigate("/")
     } catch (error) {
       console.error("An error occurred during login:", error);
-      alert("An error occurred. Please try again later.");
+      alert("Password incorrect !");
     } finally {
       setTimeout(() => {
         setLoading(false);

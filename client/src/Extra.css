@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 .modal {
     background-color: white;
     padding: 1%;
@@ -39,4 +40,50 @@ hr {
     display: flex;
     justify-content: space-between;
     margin-top: 5%;
+}
+.settings {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: underline;
+    width: fit-content;
+  }
+  .settings1 {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: underline;
+    width: fit-content;
+    margin-top: 3%;
+  }
+.settings-div {
+    background-color: white;
+    width: 80%;
+    margin-left: 7%;
+    margin-top: 3%;
+    padding: 3%;
+    border-radius: 20px;
+}
+.profile2 {
+    border-radius: 100%;
+    border: 1px solid black;
+    width: 20%;
+    margin-top: 4%;
+}
+.settings-info {
+    width: 70%;
+    border-radius: 20px;
+    padding: 3%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(211, 211, 211, 0.334);
+}
+.settings-div1 {
+    display: flex;
+    justify-content: space-between;
+}
+.settings-info1, .settings-info2 {
+    width: 45%;
 }
