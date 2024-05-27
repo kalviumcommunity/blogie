@@ -34,6 +34,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
+    console.log(user)
     if (!user) {
       return res.status(400).json({ message: "User is not registered" });
     }
@@ -43,6 +44,7 @@ router.post("/login", async (req, res) => {
     }
     const token = jwt.sign({ username: user.username }, "JWTCODE", { expiresIn: "1h" });
     res.cookie('authToken', token, { maxAge: 3600000});
+    res.cookie("username", user.username, {maxAge: 3600000})
     res.send("Login successfull")
 
   } catch (error) {

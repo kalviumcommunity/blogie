@@ -2,17 +2,15 @@ import profile from "../assets/profile.webp"
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom"
 
+export  function getCookie(name) {
+  let cookieArray = document.cookie.split('; ')
+  let cookie = cookieArray.find((row) => row.startsWith(name + '='))
+  return cookie ? cookie.split('=')[1] :""
+}
 
 const Account = () => {
   const navigate = useNavigate()
   const [loginbtn, setLoginBtn] = useState(false);
-
-  function getCookie(name) {
-    let cookieArray = document.cookie.split('; ')
-    let cookie = cookieArray.find((row) => row.startsWith(name + '='))
-    return cookie ? cookie.split('=')[1] :""
-  }
-
 
   useEffect(() => {
     if (getCookie("authToken")) {
@@ -22,7 +20,6 @@ const Account = () => {
       navigate("/login")
     }
   }, [navigate])
-
 
   const handleLogout = () => {
     document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -39,6 +36,9 @@ const Account = () => {
       <div className="modal">
         <center>
             <img src={profile} alt="" className="profile"/>
+        </center>
+        <center>
+        <p>{getCookie("username")}</p>
         </center>
         <hr />
         <div className="badge-div">
