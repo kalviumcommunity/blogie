@@ -19,6 +19,15 @@ const Settings = () => {
   
     fetchBlogs();
   }, []); 
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:3001/delete/${id}`)
+    .then(res => {
+      console.log(res)
+      window.location.reload()
+    })
+    .catch(err => console.log(err))
+  }
   
 
   return (
@@ -83,8 +92,8 @@ const Settings = () => {
           </div>
           <br />
           <div className="spsbtns">
-            <div>
-          <Deletebtn /></div>
+            <div onClick={() => handleDelete(blog._id)}>
+          <Deletebtn/></div>
           <div>
           <button className="btn-update"> Update
           </button>
