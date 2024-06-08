@@ -4,7 +4,8 @@ const cors = require("cors");
 const Data = require("./schema.js");
 const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser")
-const {UserRouter} = require("./routes/routes.js")
+const {UserRouter} = require("./routes/routes.js");
+const User = require("./models/User.js");
 const app = express();
 dotenv.config()
 
@@ -44,6 +45,12 @@ app.get("/getdata", async (req, res) => {
       console.log("err is occured");
     });
 });
+app.delete("/delete/:id", (req,res) => {
+  const id = req.params.id
+  Data.findByIdAndDelete({_id:id})
+  .then(res => res.json(res))
+  .catch(err => res.json(err))
+})
 
 
 app.listen(process.env.PORT || 3001, async () => {
