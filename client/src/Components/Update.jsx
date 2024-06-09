@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { getCookie } from "./Account";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../assets/logo.png";
-import { getCookie } from "./Account"
-import { Link, useNavigate } from "react-router-dom";
-const Blog = () => {
+
+const Update = () => {
   const [author, setAuthor] = useState("");
   const [email, setEmail] = useState("");
   const [heading, setHeading] = useState("");
@@ -11,35 +12,57 @@ const Blog = () => {
   const [image2, setImage2] = useState("");
   const [blog, setBlog] = useState("");
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const { id } = useParams();
 
-    e.preventDefault();
+  console.log("Author:", author);
+  
+  useEffect(() => {
+    // Fetch blog data for update
     axios
-      .post("http://localhost:3001/data", {
+      .get(`http://localhost:3001/update/${id}`)
+      .then((response) => {
+        const blogData = response.data;
+        if (blogData) {
+          setAuthor(blogData.author);
+          setEmail(blogData.email);
+          setHeading(blogData.heading);
+          setImage(blogData.image);
+          setImage2(blogData.image2);
+          setBlog(blogData.blog);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
+
+  useEffect(() => {
+    // Fetch author name from cookie
+    const username = getCookie("username");
+    if (username) {
+      setAuthor(username);
+    }
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Update blog data
+    axios
+      .put(`http://localhost:3001/update/${id}`, {
         author,
         email,
         heading,
-        blog,
         image,
-        image2
+        image2,
+        blog,
       })
-      .then((response) => {
-        console.log(response.data);
-        if (response.data.status) {
-          console.log("data stored");
-          navigate("/");
-        }
+      .then((result) => {
+        console.log(result);
+        navigate("/settings");
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  useEffect(() => {
-    const username = getCookie("username")
-    if (username) {
-      setAuthor(username)
-    }
-  }, [])
+
   return (
     <div className="main">
       <div>
@@ -59,13 +82,13 @@ const Blog = () => {
       </div>
       <center>
         <div className="input-content">
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="">
               <label htmlFor="text">Author name : </label>
               <input
                 type="text"
                 placeholder="Enter your name"
-                value={getCookie("username")}
+                value={author}
                 readOnly
               />
               <br />
@@ -75,6 +98,7 @@ const Blog = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -83,6 +107,7 @@ const Blog = () => {
               <input
                 type="text"
                 placeholder="Enter the Blog heading"
+                value={heading}
                 onChange={(e) => setHeading(e.target.value)}
               />
             </div>
@@ -92,6 +117,7 @@ const Blog = () => {
               <input
                 type="text"
                 placeholder="Enter your image link here"
+                value={image}
                 onChange={(e) => setImage(e.target.value)}
               />
             </div>
@@ -100,6 +126,7 @@ const Blog = () => {
               <input
                 type="text"
                 placeholder="Enter your image link here"
+                value={image2}
                 onChange={(e) => setImage2(e.target.value)}
               />
             </div>
@@ -112,11 +139,12 @@ const Blog = () => {
                 id=""
                 cols="55"
                 rows="25"
+                value={blog}
                 onChange={(e) => setBlog(e.target.value)}
               ></textarea>
             </div>
-            <button className="menu__button">
-              <span>Hover me!</span>
+            <button type="submit" className="menu__button">
+              Submit
             </button>
           </form>
         </div>
@@ -125,4 +153,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Update;
