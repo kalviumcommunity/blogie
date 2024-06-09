@@ -38,6 +38,22 @@ app.post("/blog/:username",async (req,res)=>{
   // console.log(blogs)
   res.send(blogs)
 })
+
+app.get('/update/:id', (req, res) => {
+  const id = req.params.id;
+  Data.findById(id)
+    .then(blogData => {
+      if (!blogData) {
+        return res.status(404).json({ error: "Blog not found" });
+      }
+      res.json(blogData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
+
 app.put('/update/:id', (req, res) => {
   const id = req.params.id;
   const { author, email, heading, image, image2, blog } = req.body; // Extract values from req.body
