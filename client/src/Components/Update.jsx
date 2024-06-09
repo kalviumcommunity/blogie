@@ -14,8 +14,6 @@ const Update = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  console.log("Author:", author);
-  
   useEffect(() => {
     // Fetch blog data for update
     axios
@@ -144,7 +142,7 @@ const Update = () => {
               ></textarea>
             </div>
             <button type="submit" className="menu__button">
-              Submit
+                <span>Submit</span>
             </button>
           </form>
         </div>
