@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import profile from "../assets/profile.webp"
+import {Link} from "react-router-dom"
 import { getCookie } from "./Account"
 import Deletebtn from "./Deletebtn"
 const Settings = () => {
@@ -95,8 +96,9 @@ const Settings = () => {
             <div onClick={() => handleDelete(blog._id)}>
           <Deletebtn/></div>
           <div>
+            <Link to={`/update/${blog._id}`}>
           <button className="btn-update"> Update
-          </button>
+          </button></Link>
           </div>
           </div>
         </div>
