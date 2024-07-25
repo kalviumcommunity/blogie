@@ -1,5 +1,5 @@
 # Blogie
-## build your interest here 💡
+## Build your interest here 💡
 
 
 Welcome to blogie, a platform where creativity meets interest.
