@@ -14,6 +14,7 @@ html {
   height: 100%;
   overflow-x: hidden;
 }
+
 body {
   background-color: rgba(232, 232, 184, 0.265);
 }
@@ -55,6 +56,10 @@ nav {
   color: black;
   text-decoration: none;
   margin-top: 2%;
+}
+.links{
+  color: rgb(105, 105, 231);
+  cursor: pointer;
 }
 .input-content {
   width: max-content;
