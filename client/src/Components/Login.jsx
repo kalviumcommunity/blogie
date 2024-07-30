@@ -33,8 +33,8 @@ const Login = () => {
   };
   
   function forgot(){
+    setLoading(true)
     if (email){
-      setLoading(true)
       axios.post("http://localhost:3001/auth/otp",{email}).then((res)=>{
         const otp=res.data
         sessionStorage.setItem("qed-et",otp)
