@@ -5,8 +5,6 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv")
-const otpGenerator = require("otp-generator");
-
 
 
 router.post("/signup", async (req, res) => {
@@ -54,58 +52,57 @@ router.post("/login", async (req, res) => {
     return res.status(500).json({ message: "Error logging in" });
   }
 });
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "blogiepost@gmail.com",
-    pass: "vuvmzygkwombzvur",
-  },
-});
-router.post("/otp", async (req, res) => {
+
+router.post("/forgotpassword", async (req, res) => {
+  const { email } = req.body;
   try {
-    const otp = otpGenerator.generate(6, {
-      upperCaseAlphabets: false,
-      specialChars: false,
-      lowerCaseAlphabets: false,
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User is not registered" });
+    }
+    const token = jwt.sign({ id: user._id }, process.env.KEY, {
+      expiresIn: "5m",
     });
-    var mailOptions = {
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "blogiepost@gmail.com",
+        pass: "vuvmzygkwombzvur",
+      },
+    });
+    const mailOptions = {
       from: "blogiepost@gmail.com",
-      to: req.body.email,
-      subject: "Your otp " + otp,
-      html:
-        "<h1>Hey welcome</h1> <p>Here is your otp </p>" + `<h2> '${otp}'</h2>`,
+      to: email,
+      subject: "Reset password",
+      text: `Hello Blogie user
+      
+      we made a link to reset your password click here!
+
+      http://localhost:5173/resetpass/${token}`,
     };
     await transporter.sendMail(mailOptions);
-    console.log("OTP sent");
-    const sotp=await bcrypt.hash(otp,10);
-    res.send(sotp);
+    return res.json({ status: true, message: "Email sent successfully" });
   } catch (error) {
-    console.error("Error sending OTP:", error);
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error("Error sending password reset email:", error);
+    return res
+      .status(500)
+      .json({ message: "Error sending password reset email" });
   }
 });
 
-
-router.put("/otpvalid", async (req, res) => {
+router.post("/resetpassword/:token", async (req, res) => {
+  const token = req.params.token;
+  const { password } = req.body;w
   try {
-    const otp = await bcrypt.hash(req.body.otp,10);
-    const hashedotp = req.body.valid;
-    if (bcrypt.compare(otp,hashedotp)) {
-      const update = await User.findOneAndUpdate(
-        { email: req.body.email },
-        { password: await bcrypt.hash(req.body.password,10) }
-      );
-      if (!update) {
-        res.status(404).send("User not in database");
-      } else {
-        res.send("Password updated successfully");
-      }
-    } else {
-      res.status(400).send("Invalid OTP");
-    }
-  } catch (error) {
-    console.error("Error validating OTP:", error);
-    res.status(500).json({ message: "Internal Server Error" });
+    const decoded = await jwt.verify(token, process.env.KEY);
+    const id = decoded.id;
+    const hashPassword = await bcrypt.hash(password, 10);
+    await User.findByIdAndUpdate({ _id: id }, { password: hashPassword });
+    return res.json({ status: true, message: "Your password is updated" });
+  } catch (err) {
+    console.error("Error occurred while resetting password:", err);
+    return res.status(500).json({ message: "Error resetting password" });
   }
 });
 
