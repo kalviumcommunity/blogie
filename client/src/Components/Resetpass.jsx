@@ -24,10 +24,6 @@ const Forgotpass = () => {
 
     } catch (error) {
       console.error("Error occurred while submitting form:", error);
-    } finally {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000)
     }
   };
 
