@@ -6,6 +6,7 @@ import Login from "./Components/Login.jsx"
 import About from "./Components/About.jsx"
 import Authors from "./Components/Authors.jsx"
 import Forgotpass from "./Components/Forgotpass.jsx"
+import Resetpass from './Components/Resetpass.jsx'
 import Account from "./Components/Account.jsx"
 import Modal from "./Components/Modal.jsx"
 import Settings from "./Components/Settings.jsx"
@@ -24,6 +25,7 @@ const App = () => {
       <Route path="/blog" element={<Blog />} />
       <Route path="/about" element={<About />} />
       <Route path="/authors" element={<Authors />} />
+      <Route path="/resetpass" element={<Resetpass />} />
       <Route path="/account" element={<Account />} />
       <Route path="/modal" element={<Modal />} />
       <Route path="/Update/:id" element={<Update />} />

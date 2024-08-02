@@ -32,19 +32,7 @@ const Login = () => {
     }
   };
   
-  function forgot(){
-    setLoading(true)
-    if (email){
-      axios.post("http://localhost:3001/auth/otp",{email}).then((res)=>{
-        const otp=res.data
-        sessionStorage.setItem("qed-et",otp)
-        navigate("/forgotpass",{state:{email}})
-      })
-    }
-    else{
-      alert("please fill the email in the form and submit.Thank you")
-    }
-  }
+  
 
   return (
     <div>
@@ -81,10 +69,9 @@ const Login = () => {
               <input type="password" onChange={(e) => setPassword(e.target.value)} required />
             </div>
             <p>Enjoy our space by clicking login</p>
-            <br />
-            <p onClick={forgot} className="links">Forgot password?</p>
+            <Link to="/resetpass"><br />
+            <p>Forgot password?</p></Link>
             <div>
-            <Link to="/register"><br/><p>Not having an Account ?</p></Link>
               {!loading ? (<center>
                 <button type="submit" className="login-btn">Login</button>
               </center>) : null}
